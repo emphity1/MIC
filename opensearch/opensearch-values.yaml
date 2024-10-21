@@ -1,0 +1,54 @@
+clusterName: "opensearch-cluster"
+nodeGroup: "master"
+
+singleNode: true  # Abilitato perché serve un singolo nodo
+
+roles:
+  - master
+  - ingest
+  - data
+  - remote_cluster_client
+
+replicas: 1  # Singolo nodo
+
+opensearchHome: /usr/share/opensearch
+
+config:
+  opensearch.yml: |
+    cluster.name: opensearch-cluster
+    network.host: 0.0.0.0
+
+plugins.security.disabled: true
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "256Mi"
+  limits:
+    cpu: "1000m"
+    memory: "1Gi"
+
+persistence:
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  size: 5Gi  # Volume persistente con 5Gi di spazio
+
+opensearchJavaOpts: "-Xmx512M -Xms512M"
+
+networkHost: "0.0.0.0"
+
+service:s
+  type: ClusterIP  # Solo accesso interno, nessun load balancer
+
+nodeSelector: {}
+tolerations: []
+
+image:
+  repository: "opensearchproject/opensearch"
+  tag: "2.11.0"  # Versione dell'immagine
+  pullPolicy: "IfNotPresent"
+
+protocol: http  # Usa HTTP poiché la sicurezza è disabilitata
+httpPort: 9200
+transportPort: 9300

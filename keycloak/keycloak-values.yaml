@@ -1,0 +1,28 @@
+replicas: 1  # Installazione con singola replica
+
+postgresql:
+  enabled: false  # Utilizza PostgreSQL esterno
+
+externalDatabase:
+  host: "postgresql.test-requirements.svc.cluster.local"  # Aggiorna con il corretto hostname
+  port: 5432
+  user: "openk9"
+  database: "keycloak"
+  existingSecret: "keycloak-db-secret"  # Secret con la password del database
+
+auth:
+  existingSecret: "keycloak-admin-secret"  # Secret per la password dell'admin di Keycloak
+
+ingress:
+  enabled: true
+  hostname: "keycloak.local"  # Sostituisci con il tuo hostname
+  annotations:
+    kubernetes.io/ingress.class: "nginx"  # O l'ingress controller che stai usando
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "1Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"

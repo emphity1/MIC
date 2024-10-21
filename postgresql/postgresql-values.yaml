@@ -1,0 +1,19 @@
+architecture: standalone  # Installazione con singola replica
+
+auth:
+  username: "openk9"
+  existingPasswordSecret: "postgresql-auth"  # Utilizza una Secret per le credenziali
+  database: "my_database"  # Sostituisci con il nome del tuo database
+
+primary:
+  persistence:
+    enabled: true
+    size: "1Gi"  # 1Gi di storage per il volume persistente
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "1Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"

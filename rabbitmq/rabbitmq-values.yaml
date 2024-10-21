@@ -1,0 +1,20 @@
+replicaCount: 1  # Installazione con singola replica
+
+auth:
+  username: "openk9"
+  existingPasswordSecret: "rabbitmq-auth"  # Utilizza una Secret per la password
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "1Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
+
+persistence:
+  enabled: true
+  size: "5Gi"  # 5Gi di storage per il volume persistente
+
+service:
+  type: ClusterIP  # Accesso interno
