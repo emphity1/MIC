@@ -44,7 +44,7 @@ Tutti i componenti saranno installati nel namespace `test-requirements`.
 Per prima cosa, crea il namespace `test-requirements` dove verranno installati tutti i componenti:
 
 ```bash
-kubectl create namespace test-requirements
+oc create namespace test-requirements
 ```
 
 ---
@@ -126,7 +126,7 @@ kubectl create namespace test-requirements
 2. **Crea la Secret per le Credenziali:**
 
    ```bash
-   kubectl create secret generic rabbitmq-auth      --from-literal=rabbitmq-username=openk9      --from-literal=rabbitmq-password=openk9      --namespace=test-requirements
+   oc create secret generic rabbitmq-auth      --from-literal=rabbitmq-username=openk9      --from-literal=rabbitmq-password=openk9      --namespace=test-requirements
    ```
 
 3. **Crea il File di Configurazione `values.yaml`:**
@@ -168,7 +168,7 @@ kubectl create namespace test-requirements
 1. **Crea la Secret per le Credenziali:**
 
    ```bash
-   kubectl create secret generic postgresql-auth      --from-literal=postgres-password=openk9      --namespace=test-requirements
+   oc create secret generic postgresql-auth      --from-literal=postgres-password=openk9      --namespace=test-requirements
    ```
 
 2. **Crea il File di Configurazione `values.yaml`:**
@@ -212,13 +212,13 @@ kubectl create namespace test-requirements
    - **Secret per il Database di Keycloak:**
 
      ```bash
-     kubectl create secret generic keycloak-db-secret        --from-literal=password=openk9        --namespace=test-requirements
+     oc create secret generic keycloak-db-secret        --from-literal=password=openk9        --namespace=test-requirements
      ```
 
    - **Secret per l'Admin di Keycloak:**
 
      ```bash
-     kubectl create secret generic keycloak-admin-secret        --from-literal=admin-password=openk9        --namespace=test-requirements
+     oc create secret generic keycloak-admin-secret        --from-literal=admin-password=openk9        --namespace=test-requirements
      ```
 
 2. **Crea il File di Configurazione `values.yaml`:**
@@ -267,19 +267,19 @@ kubectl create namespace test-requirements
 Per verificare che tutti i pod siano in esecuzione correttamente:
 
 ```bash
-kubectl get pods -n test-requirements
+oc get pods -n test-requirements
 ```
 
 Per controllare i servizi:
 
 ```bash
-kubectl get svc -n test-requirements
+oc get svc -n test-requirements
 ```
 
 Per visualizzare gli ingress:
 
 ```bash
-kubectl get ingress -n test-requirements
+oc get ingress -n test-requirements
 ```
 
 ---
@@ -300,7 +300,7 @@ Per rimuovere tutte le risorse create:
 2. **Elimina il namespace:**
 
    ```bash
-   kubectl delete namespace test-requirements
+   oc delete namespace test-requirements
    ```
 
 ---
